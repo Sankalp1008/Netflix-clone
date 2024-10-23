@@ -4,13 +4,12 @@ import Header from './Header'
 import checkValidData from '../utils/validate'
 import { createUserWithEmailAndPassword ,signInWithEmailAndPassword, updateProfile} from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import logo from '../images/logo.png'
 
 const Login = () => {
     const dispatch = useDispatch()
-    const navigate = useNavigate()
     const email = useRef(null)
     const password = useRef(null)
     const name = useRef(null)
@@ -34,12 +33,12 @@ const Login = () => {
               const user = userCredential.user;
               updateProfile(user, {
                 displayName: name.current.value,
-                 photoURL: "https://media.licdn.com/dms/image/v2/D5603AQGVZrnksfN9zA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1708451736341?e=1734566400&v=beta&t=5rXmwGLfblai82Z68kYN-MqClBVPeYYrnllxIqYeO-k"
+                 photoURL: logo
               }).then(() => {
                 const {uid, email , displayName , photoURL} = auth.currentUser;
                 //  dispatch({uid:uid , email:email , displayName:displayName})
                 dispatch(addUser({uid:uid , email:email , displayName:displayName , photoURL:photoURL}))
-                navigate('/browse')
+                // navigate('/browse')
                 // Profile updated!
                 // ...
               }).catch((error) => {
@@ -60,8 +59,7 @@ const Login = () => {
             .then((userCredential) => {
               // Signed in 
               const user = userCredential.user;
-              alert('Signed In!')
-              navigate('/browse')
+            //   navigate('/browse')
 
 
               // ...
