@@ -19,7 +19,7 @@ const VideoBg = ({ id }) => {
     }
 
     useEffect(() => {
-        getMovieTrailer()
+        if(!trailerId) getMovieTrailer()
     }, [])
     return (
         <div className='w-full'>

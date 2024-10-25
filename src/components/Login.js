@@ -6,7 +6,7 @@ import { createUserWithEmailAndPassword ,signInWithEmailAndPassword, updateProfi
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
-import logo from '../images/logo.png'
+import logo from '../images/netflix-user.jpg'
 
 const Login = () => {
     const dispatch = useDispatch()
@@ -77,10 +77,10 @@ const Login = () => {
         <div className='bg-gradient-to-b from-black'>
             <Header />
             <div className='absolute'>
-                <img src={bgImg} alt="bg" />
+                <img className='h-screen object-cover w-screen' src={bgImg} alt="bg" />
             </div>
 
-            <form onSubmit={handleSubmit} className='absolute w-3/12 p-12 my-36 mx-auto right-0 left-0 bg-black-rgba text-white'>
+            <form onSubmit={handleSubmit} className='absolute w-full md:w-3/12 p-12 my-36 mx-auto right-0 left-0 bg-black-rgba text-white'>
                 <h1 className='font-bold text-3xl  py-4'> {isSignIn ? 'Sign In' : 'Sign Up'}</h1>
 
                 {!isSignIn &&

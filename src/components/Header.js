@@ -6,12 +6,16 @@ import { auth } from '../utils/firebase'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { addUser, removeUser } from '../utils/userSlice'
+import { toggleSearchGpt } from '../utils/GptSlice'
+import { SUPPORTED_LANGUAGES } from '../utils/constants'
+import { changeLanguage } from '../utils/configSlice'
 
 const Header = () => {
 
   const navigate = useNavigate()
   const user = useSelector(store => store.user)
   const dispatch = useDispatch()
+  const langConst = useSelector((store)=> store.gpt.showGptSearch)
 
   useEffect(()=>{
    const onSignUp= onAuthStateChanged(auth, (user) => {
@@ -32,15 +36,36 @@ const Header = () => {
     });
     return ()=> onSignUp()
   },[])
+
+  const handleGPTSearch = ()=>{
+   dispatch(toggleSearchGpt())
+  }
+
+  const handleLanguage = (e)=>{
+  dispatch(changeLanguage(e.target.value))
+  }
+
   return (
-    <div className='absolute w-full px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between'>
+    <div className='absolute w-full px-8 py-1 bg-gradient-to-b from-black z-10 flex flex-col md:flex-row justify-between'>
         <img 
-        className='w-44'
+        className='w-44 mx-auto md:mx-0'
         src={logo} alt="logo" />
         {user ? 
-       <div className='p-4 flex'>
-       <img className='w-8 h-8' src={user?.photoURL} alt="userIcon" />
+       <div className='p-2 flex justify-between'>
+        {langConst && 
+          <select onChange={handleLanguage} className='bg-gray-800 text-white rounded-lg px-2 m-2' > 
+          {SUPPORTED_LANGUAGES.map((item,idx)=>(
+            <option value={item.id} key={item.id}>{item.name}</option>
+          ))}
+        </select>
+        }
+      
+        <button onClick={handleGPTSearch} className='bg-red-800  text-white rounded-lg py-2 px-4 my-2 mx-4'>
+          {langConst ? "Homepage" : "AI Suggest"}
+          </button>
+       <img className=' hidden md:block w-8 h-8' src={user?.photoURL} alt="userIcon" />
           <button
+          
           onClick={()=>{
             signOut(auth).then(() => {
               // Sign-out successful.              
@@ -48,7 +73,7 @@ const Header = () => {
               // An error happened.
             });
           }}
-          className='text-white font-bold px-2'>Sign Out</button>
+          className=' px-0 md:flex md:px-2 text-white font-bold '>Sign Out</button>
       </div> :
       null  
       }
