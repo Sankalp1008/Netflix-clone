@@ -15,7 +15,7 @@ const useUpcomingMovies=()=>{
     }
   
     useEffect(()=>{
-      nowPlaying()
+     !upcoming_movies && nowPlaying()
     },[])
 }
 

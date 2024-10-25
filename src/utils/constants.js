@@ -15,5 +15,5 @@ export const API_Options = {
 
   ]
 
-  export const OPEN_API_KEY = "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"
+//   export const OPEN_API_KEY = "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"
   export const GEMINI_API_KEY = process.env.REACT_APP_GEMINI_API_KEY

@@ -1,10 +1,9 @@
 import React, { useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { lang } from '../utils/languageConstants'
-import client from '../utils/openAi'
+// import client from '../utils/openAi'
 import { GoogleGenerativeAI } from '@google/generative-ai'
 import { API_Options, GEMINI_API_KEY } from '../utils/constants'
-import axios from 'axios'
 import { addGptMovieResult } from '../utils/GptSlice'
 
 const GptSearchBar = () => {

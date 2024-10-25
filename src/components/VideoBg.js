@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React, { useEffect } from 'react'
+import axios from 'axios'
 import { API_Options } from '../utils/constants'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTrailerVidoes } from '../utils/moviesSlice'
@@ -19,7 +19,7 @@ const VideoBg = ({ id }) => {
     }
 
     useEffect(() => {
-        if(!trailerId) getMovieTrailer()
+        !trailerId && getMovieTrailer()
     }, [])
     return (
         <div className='w-full'>

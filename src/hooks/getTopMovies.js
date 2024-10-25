@@ -15,7 +15,7 @@ const useGetTopMovies=()=>{
     }
   
     useEffect(()=>{
-        if(!top_movies) nowPlaying()
+        !top_movies && nowPlaying()
     },[])
 }
 

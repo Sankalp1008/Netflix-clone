@@ -15,7 +15,7 @@ const usePopularMovies=()=>{
     }
   
     useEffect(()=>{
-      if(!popular_movies) nowPlaying()
+    !popular_movies && nowPlaying()
     },[])
 }
 
