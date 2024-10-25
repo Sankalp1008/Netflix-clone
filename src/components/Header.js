@@ -1,6 +1,5 @@
 import React,{useEffect} from 'react'
 import logo from '../images/logo.png'
-import userIcon from '../images/netflix-user.jpg'
 import { onAuthStateChanged, signOut } from 'firebase/auth'
 import { auth } from '../utils/firebase'
 import { useNavigate } from 'react-router-dom'
