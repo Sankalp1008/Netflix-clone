@@ -34,7 +34,6 @@ const data =
         const movieList = text.split(",")
         const movieForSearch = movieList.map((item) => getSearchedMovies(item))
         const promiseArray = await Promise.all(movieForSearch)
-        console.log(promiseArray)
         dispatch(addGptMovieResult({ movieNames:movieList ,movieResults:promiseArray}))
 
     }

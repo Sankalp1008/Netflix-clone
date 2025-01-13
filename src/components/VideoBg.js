@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getTrailerVidoes } from '../utils/moviesSlice'
 
 const VideoBg = ({ id }) => {
-
     const dispatch = useDispatch()
     const trailerId = useSelector((store)=> store.movies?.trailerMovies)
     const getMovieTrailer = () => {
@@ -13,7 +12,6 @@ const VideoBg = ({ id }) => {
             .then((res) => {
                 const filteredType = res.data.results.filter((item) => item.type === "Trailer")
                 const movieTrailer = filteredType.length ? filteredType[0] : res.data.results[0]
-                console.log(movieTrailer)
                 dispatch(getTrailerVidoes(movieTrailer))
             })
     }
